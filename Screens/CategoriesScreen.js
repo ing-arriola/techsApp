@@ -30,9 +30,6 @@ const CategoriesScreen = (props) => {
     )
 }
 
-CategoriesScreen.navigationOptions = {
-    headerTitle : 'Techs Categories'
-}
 
 const styles = StyleSheet.create({
     screen:{
