@@ -8,7 +8,11 @@ const CategoriesScreen = (props) => {
             <Text>
                 Categories Screen
             </Text>
-            <Button title='Go to techs!' onPress={()=>{}}  />
+            <Button title='Go to techs!' onPress={()=>{
+                props.navigation.navigate({
+                    routeName : 'CategoriesTechs'
+                })
+            }}  />
         </View>
     )
 }
