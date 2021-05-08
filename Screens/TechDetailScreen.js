@@ -1,12 +1,15 @@
 import React from 'react'
-import {View,Text,StyleSheet} from 'react-native'
+import {View,Text,StyleSheet,Button} from 'react-native'
 
-const TechDetailScreen = () => {
+const TechDetailScreen = (props) => {
     return (
         <View style={styles.screen} >
             <Text>
             TechDetailScreen
             </Text>
+            <Button title='Go back to Categories' onPress={()=>{
+                props.navigation.popToTop()
+            }}  />
         </View>
     )
 }
