@@ -8,18 +8,20 @@ import TechDetailScreen from '../Screens/TechDetailScreen'
 
 const TechsNavigator = createStackNavigator({
     Categories:{
-        screen:CategoriesScreen,
-        navigationOptions : {
-            headerTitle : 'Techs Categories',
+        screen:CategoriesScreen
+    }, 
+    CategoriesTechs:CategoriesTechsScreen, 
+    TechDetail:TechDetailScreen
+    },
+    {
+        defaultNavigationOptions:{
             headerStyle:{
                 backgroundColor:Colors.primaryColor
-            },
-            headerTintColor: "white",
-            headerTitleAlign:'center'
+                },
+                headerTintColor: "white",
+                headerTitleAlign:'center' 
         }
-    }, 
-    CategoriesTechs:CategoriesTechsScreen,
-    TechDetail:TechDetailScreen
-})
+    }
+)
 
 export default createAppContainer(TechsNavigator) 
