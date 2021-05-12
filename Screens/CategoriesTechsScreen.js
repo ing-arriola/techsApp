@@ -2,18 +2,20 @@ import React from 'react'
 import {View,Text,StyleSheet,Button,FlatList} from 'react-native'
 import {TECHS} from '../data/data'
 import Tech from '../models/Tech'
+import TechItem from '../components/TechItem'
 
 const CategoriesTechsScreen = (props) => {
     const itemPassed=props.navigation.getParam('item')
     const techsToDisplay =  TECHS.filter(tech => tech.category.indexOf(itemPassed.id)>=0)
 
     const renderTechItem = (itemData) => {
+        console.log(itemData.item.image)
         return(
-            <View>
-                <Text>
-                    {itemData.item.name}
-                </Text>
-            </View>
+            <TechItem 
+            name={itemData.item.name}
+            image={itemData.item.image}
+            onSelectTech={()=>{console.log('test')}}
+            />
         )
     }
 
@@ -23,6 +25,7 @@ const CategoriesTechsScreen = (props) => {
                 data={techsToDisplay}
                 keyExtractor={(item,index) => item.id}
                 renderItem={renderTechItem}
+                style={{width:'100%'}}
             />
         </View>
     )
