@@ -14,7 +14,14 @@ const CategoriesTechsScreen = (props) => {
             <TechItem 
             name={itemData.item.name}
             image={itemData.item.image}
-            onSelectTech={()=>{console.log('test')}}
+            onSelectTech={()=>{
+                props.navigation.navigate({
+                    routeName:'TechDetail',
+                    params:{
+                        item:itemData.item
+                    }
+                })
+            }}
             />
         )
     }
