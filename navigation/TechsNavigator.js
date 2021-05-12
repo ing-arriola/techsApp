@@ -1,6 +1,8 @@
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer  } from 'react-navigation'
+import { createBottomTabNavigator  } from 'react-navigation-tabs'
 import Colors from '../constants/Colors'
+import FavoritesScreen from '../Screens/FavoritesScreen'
 
 import CategoriesScreen from '../Screens/CategoriesScreen'
 import CategoriesTechsScreen from '../Screens/CategoriesTechsScreen'
@@ -11,7 +13,7 @@ const TechsNavigator = createStackNavigator({
         screen:CategoriesScreen
     }, 
     CategoriesTechs:CategoriesTechsScreen, 
-    TechDetail:TechDetailScreen
+    TechDetail:TechDetailScreen 
     },
     {
         defaultNavigationOptions:{
@@ -24,4 +26,10 @@ const TechsNavigator = createStackNavigator({
     }
 )
 
-export default createAppContainer(TechsNavigator) 
+
+const BottomNavigator = createBottomTabNavigator({
+    Techs:TechsNavigator,
+    Favorites : FavoritesScreen
+})
+
+export default createAppContainer(BottomNavigator) 
