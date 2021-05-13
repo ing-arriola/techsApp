@@ -1,8 +1,9 @@
 import React from 'react'
 import {StyleSheet,FlatList} from 'react-native'
 import {CATEGORIES} from '../data/data'
-import Colors from '../constants/Colors' 
 import CategoryGrid from '../components/CategoryGrid'
+import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
+import CustomHButon from '../components/CustomHButon'
 
 const CategoriesScreen = (props) => {
 
@@ -32,13 +33,18 @@ const CategoriesScreen = (props) => {
     )
 }
 
-CategoriesScreen.navigationOptions = { 
-    headerTitle : 'Techs Categories',
-    headerStyle:{
-        backgroundColor:Colors.primaryColor
-    },
-    headerTintColor: "white",
-    headerTitleAlign:'center'
+CategoriesScreen.navigationOptions = navData => {
+    return {  
+        headerTitle : 'Techs Categories',
+        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        <Item
+            iconName='menu'
+            onPress={()=>{
+                navData.navigation.toggleDrawer()
+            }}
+        />
+    </HeaderButtons>
+    }
 }
 
 
