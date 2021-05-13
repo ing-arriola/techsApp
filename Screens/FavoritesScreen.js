@@ -1,22 +1,36 @@
 import React from 'react'
-import {View,Text,StyleSheet} from 'react-native'
+import TechList from '../components/TechList'
+import {TECHS} from '../data/data'
+import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
+import CustomHButon from '../components/CustomHButon'
 
-const FavoritesScreen = () => {
+
+
+const FavoritesScreen = (props) => {
+    
+    const techsToDisplay =  TECHS.filter(tech => tech.id === 't1' || tech.id === 't2'  )
+    
+    
     return (
-        <View style={styles.screen} >
-            <Text>
-            FavoritesScreen
-            </Text>
-        </View>
+        <TechList 
+        techsToDisplay={techsToDisplay}
+        navigation={props.navigation}
+        />
     )
 }
 
-const styles = StyleSheet.create({
-    screen:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+FavoritesScreen.navigationOptions = navData => {
+    return {  
+        headerTitle : 'Favorites Techs',
+        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        <Item
+            iconName='menu'
+            onPress={()=>{
+                navData.navigation.toggleDrawer()
+            }}
+        />
+    </HeaderButtons>
     }
-})
+}
 
 export default FavoritesScreen
