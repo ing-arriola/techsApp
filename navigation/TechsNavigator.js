@@ -1,12 +1,12 @@
 import React from 'react'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer  } from 'react-navigation'
-import {Platform} from 'react-native'
+import {Platform,Text} from 'react-native'
 import { createBottomTabNavigator  } from 'react-navigation-tabs'
 import { createDrawerNavigator  } from 'react-navigation-drawer'
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Colors from '../constants/Colors'
-import FavoritesScreen from '../Screens/FavoritesScreen'
+import FavoritesScreen from '../Screens/FavoritesScreen' 
 import { Ionicons } from '@expo/vector-icons'
 
 import CategoriesScreen from '../Screens/CategoriesScreen'
@@ -17,9 +17,12 @@ import FiltersScreen from '../Screens/FiltersScreen'
 const navOptions = {
     headerStyle:{
         backgroundColor:Colors.primaryColor
-        },
-        headerTintColor: "white",
-        headerTitleAlign:'center' 
+    },
+    headerTitleStyle:{
+        fontFamily:'open-sans-bold'
+    },
+    headerTintColor: "white",
+    headerTitleAlign:'center' 
 }
 
 const TechsNavigator = createStackNavigator({
@@ -54,7 +57,8 @@ const FavoritesNavigator = createStackNavigator({
                         color={tabInfo.tintColor}
                     />
             },
-            tabBarColor:Colors.primaryColor
+            tabBarColor:Colors.primaryColor,
+            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Techs</Text> :'Techs'
         }
     },
     Favorites : {
@@ -63,12 +67,13 @@ const FavoritesNavigator = createStackNavigator({
             tabBarLabel:'Favorites',
             tabBarIcon:(tabInfo) => {
                 return <Ionicons 
-                        name='star'
+                        name='star' 
                         size={25}
                         color={tabInfo.tintColor}
                     />
             },
-            tabBarColor:Colors.accentColor
+            tabBarColor:Colors.accentColor,
+            tabBarLabel:Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Favorites</Text> :'Techs'
         }
     }
 }
@@ -85,6 +90,9 @@ const BottomNavigator = Platform.OS === "android"
     }) 
     : createBottomTabNavigator(TabConfiguration,{
         tabBarOptions: {
+            labelStyle:{
+                fontFamily:'open-sans' // just for ios
+            },
             activeTintColor:Colors.accentColor
         }
     })
@@ -98,8 +106,20 @@ const FilterNavigator = createStackNavigator({
     )
 
 const MainNavigator = createDrawerNavigator({ 
-        TechsFavs: BottomNavigator,
+        TechsFavs: {
+            screen:BottomNavigator,
+            navigationOptions:{
+                drawerLabel:'Home'
+            }
+        },
         Filter : FilterNavigator
+    },{
+        contentOptions:{
+            activeTintColor:Colors.accentColor,
+            labelStyle:{
+                fontFamily:'open-sans-bold'
+            }
+        }
     })
 
 export default createAppContainer(MainNavigator) 
