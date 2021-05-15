@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from 'react-native';
+import {createStore,combineReducers} from 'redux'
+import { Provider } from 'react-redux'
 import * as Font from 'expo-font'
 import AppLoading  from 'expo-app-loading'
 import TechsNavigator from './navigation/TechsNavigator'
 import {enableScreens} from 'react-native-screens'
+import techsReducer from './store/reducers/techs'
 
 enableScreens()
+
+const rootReducer = combineReducers({
+  techs:techsReducer
+})
+
+const store = createStore(rootReducer)
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -26,7 +35,9 @@ export default function App() {
   }
   
   return (
-   <TechsNavigator/>
+    <Provider store={store} >
+      <TechsNavigator/>
+    </Provider>
   );
 }
 
