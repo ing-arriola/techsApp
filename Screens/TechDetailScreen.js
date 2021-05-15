@@ -1,19 +1,25 @@
 import React from 'react'
-import {View,Text,StyleSheet,Button} from 'react-native'
+import {ScrollView,View,Text,StyleSheet,Button,Image} from 'react-native'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
 import CustomHButon from '../components/CustomHButon'
 
 const TechDetailScreen = (props) => {
-    console.log(props.navigation.getParam('item'))
+    const selectedTech = props.navigation.getParam('item')
+    console.log(selectedTech)
     return (
-        <View style={styles.screen} >
-            <Text>
-            TechDetailScreen
-            </Text>
-            <Button title='Go back to Categories' onPress={()=>{
-                props.navigation.popToTop()
-            }}  />
-        </View>
+        <ScrollView>
+            <View style={styles.screen} >
+                <Image
+                    source={selectedTech.image}
+                />
+                <Text>
+                {selectedTech.name}
+                </Text>
+                <Button title='Go back to Categories' onPress={()=>{
+                    props.navigation.popToTop()
+                }}  />
+            </View>
+        </ScrollView>
     )
 }
 
