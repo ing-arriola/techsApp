@@ -1,10 +1,11 @@
 import React from 'react'
-import {TECHS} from '../data/data'
+import { useSelector } from 'react-redux'
 import TechList from '../components/TechList'
 
 const CategoriesTechsScreen = (props) => {
     const itemPassed=props.navigation.getParam('item')
-    const techsToDisplay =  TECHS.filter(tech => tech.category.indexOf(itemPassed.id)>=0)
+    const availableTechs = useSelector(state => state.techs.filteredTechs)
+    const techsToDisplay =  availableTechs.filter(tech => tech.category.indexOf(itemPassed.id)>=0)
 
     return (
         <TechList 
