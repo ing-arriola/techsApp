@@ -1,11 +1,22 @@
-import React from 'react'
+import React,{ useCallback,useEffect } from 'react'
 import {ScrollView,View,Text,StyleSheet,Button,Image} from 'react-native'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
 import CustomHButon from '../components/CustomHButon'
+import {useDispatch } from 'react-redux'
+import {toogleFavorites} from '../store/actions/techs'
 
 const TechDetailScreen = (props) => {
     const selectedTech = props.navigation.getParam('item')
-    console.log(selectedTech)
+    const dispatch = useDispatch()
+
+    const toggleFavsHandler = useCallback(() => {
+            dispatch(toogleFavorites(selectedTech))
+        },[dispatch,selectedTech]
+    )
+
+    useEffect(()=>{
+        props.navigation.setParams({toogleFavs:toggleFavsHandler})
+    },[toggleFavsHandler])
     return (
         <ScrollView>
             <View style={styles.screen} >
@@ -25,13 +36,14 @@ const TechDetailScreen = (props) => {
 
 TechDetailScreen.navigationOptions = navigationData => { 
     const itemPassed=navigationData.navigation.getParam('item')
+    const toggleFavorites = navigationData.navigation.getParam('toogleFavs')
     return { 
         headerTitle : itemPassed.name,
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={CustomHButon} >
             <Item
                 iconName='star'
-                onPress={()=>{console.log('works!!')}}
+                onPress={toggleFavorites}
             />
         </HeaderButtons>
         )
