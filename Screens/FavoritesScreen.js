@@ -1,19 +1,19 @@
 import React from 'react'
 import TechList from '../components/TechList'
-import {TECHS} from '../data/data'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
+import { useSelector } from 'react-redux'
 import CustomHButon from '../components/CustomHButon'
 
 
 
+
 const FavoritesScreen = (props) => {
-    
-    const techsToDisplay =  TECHS.filter(tech => tech.id === 't1' || tech.id === 't2'  )
-    
+    const availableTechs = useSelector(state => state.techs.favoritesTechs)
+
     
     return (
         <TechList 
-        techsToDisplay={techsToDisplay}
+        techsToDisplay={availableTechs}
         navigation={props.navigation}
         />
     )
