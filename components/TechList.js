@@ -1,10 +1,12 @@
 import React from 'react'
 import {View,StyleSheet,FlatList} from 'react-native'
 import TechItem from './TechItem'
+import {useSelector } from 'react-redux'
 
 const TechList = ({techsToDisplay,navigation}) => {
-
+    const techsFavorites = useSelector(state => state.techs.favoritesTechs)
     const renderTechItem = (itemData) => {
+        const isTechFav =  techsFavorites.some(tech => tech.id === itemData.item.id)
         return(
             <TechItem 
             name={itemData.item.name}
@@ -13,7 +15,8 @@ const TechList = ({techsToDisplay,navigation}) => {
                 navigation.navigate({
                     routeName:'TechDetail',
                     params:{
-                        item:itemData.item
+                        item:itemData.item,
+                        isFavorite:isTechFav
                     }
                 })
             }}
