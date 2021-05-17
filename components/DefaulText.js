@@ -3,7 +3,7 @@ import {Text} from 'react-native'
 
 const DefaulText = (props) => {
     return (
-        <Text style={{fontFamily='open-sans'}} >
+        <Text style={{fontFamily:'open-sans'}} >
             {props.children}
         </Text>
     )
