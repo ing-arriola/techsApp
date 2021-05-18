@@ -7,7 +7,7 @@ const CategoryGrid = ({itemData,onSelect}) => {
             style={styles.gridItem} 
                 onPress={onSelect}
             > 
-                <View style={{...styles.container, ...{backgroundColor:'rgba(0,0,0,0.20)'}}}>
+                <View style={{...styles.container, ...{backgroundColor:'#fff'}}}>
                     <Text style={styles.title} >
                         {itemData.item.title}
                     </Text>
@@ -32,7 +32,9 @@ const styles = StyleSheet.create({
         flex:1,
         borderRadius:5,
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        borderColor:'#64B5F6',
+        borderWidth:1
     },
     title:{
         fontSize:22,
