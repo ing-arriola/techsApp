@@ -35,7 +35,7 @@ const FavoritesScreen = (props) => {
 FavoritesScreen.navigationOptions = navData => {
     return {  
         headerTitle : 'Favorites Techs',
-        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
         <Item
             iconName='menu'
             onPress={()=>{
