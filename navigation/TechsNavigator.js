@@ -42,7 +42,7 @@ const FavoritesNavigator = createStackNavigator({
     TechDetail:TechDetailScreen
 },
 {
-    defaultNavigationOptions: navOptions
+    defaultNavigationOptions: navOptions 
 })
 
  const TabConfiguration = {
