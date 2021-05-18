@@ -1,6 +1,6 @@
 import React from 'react'
-import { createStackNavigator } from 'react-navigation-stack'
-import { createAppContainer  } from 'react-navigation'
+import { createStackNavigator } from '@react-navigation/stack'
+import { NavigationContainer  } from '@react-navigation/native'
 import {Platform,Text} from 'react-native'
 import { createBottomTabNavigator  } from 'react-navigation-tabs'
 import { createDrawerNavigator  } from 'react-navigation-drawer'
@@ -14,6 +14,8 @@ import CategoriesTechsScreen from '../Screens/CategoriesTechsScreen'
 import TechDetailScreen from '../Screens/TechDetailScreen'
 import FiltersScreen from '../Screens/FiltersScreen'
 
+
+
 const navOptions = {
     headerStyle:{
         backgroundColor:Colors.primaryColor
@@ -25,7 +27,9 @@ const navOptions = {
     headerTitleAlign:'center' 
 }
 
-const TechsNavigator = createStackNavigator({
+const TechNavigator = createStackNavigator()
+
+/*const TechsNavigator = createStackNavigator({
     Categories:{
         screen:CategoriesScreen
     }, 
@@ -37,89 +41,27 @@ const TechsNavigator = createStackNavigator({
     }
 )
 
-const FavoritesNavigator = createStackNavigator({
-    FavoritesScreen:FavoritesScreen,
-    TechDetail:TechDetailScreen
-},
-{
-    defaultNavigationOptions: navOptions 
-})
+*/
 
- const TabConfiguration = {
-    Techs:{
-        screen:TechsNavigator,
-        navigationOptions:{
-            tabBarLabel:'Techs',//This is up to you becasue by default values are the key of this objetc, I mean Techs here
-            tabBarIcon:(tabInfo) => {
-                return <Ionicons 
-                        name='code'
-                        size={25}
-                        color={tabInfo.tintColor}
-                    />
-            },
-            tabBarColor:Colors.primaryColor,
-            tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Techs</Text> :'Techs'
-        }
-    },
-    Favorites : {
-        screen:FavoritesNavigator,
-        navigationOptions:{
-            tabBarLabel:'Favorites',
-            tabBarIcon:(tabInfo) => {
-                return <Ionicons 
-                        name='star' 
-                        size={25}
-                        color={tabInfo.tintColor}
-                    />
-            },
-            tabBarColor:Colors.accentColor,
-            tabBarLabel:Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Favorites</Text> :'Techs'
-        }
-    }
-}
 
-const BottomNavigator = Platform.OS === "android" 
-    ? createMaterialBottomTabNavigator(TabConfiguration,{
-        activeColor:'#fff',
-        shifting:true
-        /* 
-        barStyle:{ 
-            backgroundColor: Colors.primaryColor
-        }
-        */
-    }) 
-    : createBottomTabNavigator(TabConfiguration,{
-        tabBarOptions: {
-            labelStyle:{
-                fontFamily:'open-sans' // just for ios
-            },
-            activeTintColor:Colors.accentColor
-        }
-    })
 
-const FilterNavigator = createStackNavigator({
-        Filter: FiltersScreen
-    },
-    {
-        defaultNavigationOptions: navOptions
-    }
-    )
+const TechsNavigator = (props) => {
+    return <NavigationContainer>
+        <TechNavigator.Navigator>
+            <TechNavigator.Screen 
+                name='screen'
+                component={CategoriesScreen}
+            />
+            <TechNavigator.Screen 
+                name='CategoriesTechs'
+                component={CategoriesTechsScreen}
+            />
+            <TechNavigator.Screen 
+                name='TechDetail'
+                component={TechDetailScreen}
+            />
+        </TechNavigator.Navigator>
+    </NavigationContainer>
+} 
 
-const MainNavigator = createDrawerNavigator({ 
-        TechsFavs: {
-            screen:BottomNavigator,
-            navigationOptions:{
-                drawerLabel:'Home'
-            }
-        },
-        Filter : FilterNavigator
-    },{
-        contentOptions:{
-            activeTintColor:Colors.accentColor,
-            labelStyle:{
-                fontFamily:'open-sans-bold'
-            }
-        }
-    })
-
-export default createAppContainer(MainNavigator) 
+export default TechsNavigator
