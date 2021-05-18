@@ -1,11 +1,29 @@
-import React from 'react'
+import React,{ useCallback,useEffect } from 'react'
 import {ScrollView,View,Text,StyleSheet,Button,Image} from 'react-native'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
 import CustomHButon from '../components/CustomHButon'
+import {useDispatch,useSelector } from 'react-redux'
+import {toogleFavorites} from '../store/actions/techs'
 
 const TechDetailScreen = (props) => {
     const selectedTech = props.navigation.getParam('item')
-    console.log(selectedTech)
+    const isTechFavorite =  useSelector(state => state.techs.favoritesTechs.some(tech => tech.id === selectedTech.id))
+    const dispatch = useDispatch()
+
+    const toggleFavsHandler = useCallback(() => {
+            dispatch(toogleFavorites(selectedTech))
+        },[dispatch,selectedTech]
+    )
+
+    useEffect(()=>{
+        props.navigation.setParams({toogleFavs:toggleFavsHandler})
+    },[toggleFavsHandler])
+
+
+    useEffect(()=>{
+        props.navigation.setParams({isFavorite:isTechFavorite})
+    },[isTechFavorite])
+
     return (
         <ScrollView>
             <View style={styles.screen} >
@@ -25,13 +43,16 @@ const TechDetailScreen = (props) => {
 
 TechDetailScreen.navigationOptions = navigationData => { 
     const itemPassed=navigationData.navigation.getParam('item')
+    const toggleFavorites = navigationData.navigation.getParam('toogleFavs')
+    const isFav = navigationData.navigation.getParam('isFavorite')
     return { 
         headerTitle : itemPassed.name,
         headerRight: () => (
             <HeaderButtons HeaderButtonComponent={CustomHButon} >
             <Item
-                iconName='star'
-                onPress={()=>{console.log('works!!')}}
+                title='Favorite'
+                iconName= {isFav ? 'star' : 'star-outline'}
+                onPress={toggleFavorites}
             />
         </HeaderButtons>
         )

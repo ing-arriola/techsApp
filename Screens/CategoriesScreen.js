@@ -29,6 +29,7 @@ const CategoriesScreen = (props) => {
        data={CATEGORIES}
        numColumns={2}  
        renderItem={renderGrridItem}
+       style={styles.back}
        />
     )
 }
@@ -36,7 +37,7 @@ const CategoriesScreen = (props) => {
 CategoriesScreen.navigationOptions = navData => {
     return {  
         headerTitle : 'Techs Categories',
-        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
         <Item
             iconName='menu'
             onPress={()=>{
@@ -49,10 +50,8 @@ CategoriesScreen.navigationOptions = navData => {
 
 
 const styles = StyleSheet.create({
-    screen:{
-        flex:1,
-        justifyContent:'center',
-        alignItems:'center'
+    back:{
+        backgroundColor:'#fff'
     }
 })
 

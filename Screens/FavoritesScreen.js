@@ -1,28 +1,41 @@
 import React from 'react'
+import {View,StyleSheet} from 'react-native'
 import TechList from '../components/TechList'
-import {TECHS} from '../data/data'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
+import { useSelector } from 'react-redux'
 import CustomHButon from '../components/CustomHButon'
+import Empty from '../assets/empty.svg'
+import DefaultText from '../components/DefaulText'
+
 
 
 
 const FavoritesScreen = (props) => {
-    
-    const techsToDisplay =  TECHS.filter(tech => tech.id === 't1' || tech.id === 't2'  )
-    
-    
+    const availableTechs = useSelector(state => state.techs.favoritesTechs)
+
+    if(availableTechs.length === 0){
+        return(
+            <View style={styles.emptyContainer} >
+                <Empty width={300} height={200} />
+                <DefaultText>
+                    There are not Favorites yet, please add some favorites :)
+                </DefaultText>
+            </View>
+        )
+    }
+
     return (
         <TechList 
-        techsToDisplay={techsToDisplay}
-        navigation={props.navigation}
-        />
+            techsToDisplay={availableTechs}
+            navigation={props.navigation}
+            />
     )
 }
 
 FavoritesScreen.navigationOptions = navData => {
     return {  
         headerTitle : 'Favorites Techs',
-        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
         <Item
             iconName='menu'
             onPress={()=>{
@@ -32,5 +45,13 @@ FavoritesScreen.navigationOptions = navData => {
     </HeaderButtons>
     }
 }
+
+const styles=StyleSheet.create({
+    emptyContainer:{
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center'
+    }
+})
 
 export default FavoritesScreen

@@ -1,6 +1,8 @@
 import React,{useState,useEffect,useCallback} from 'react'
 import {View,Text,StyleSheet,Switch,Platform} from 'react-native'
 import { HeaderButtons, Item  } from 'react-navigation-header-buttons'
+import {useDispatch} from 'react-redux'
+import {setFilters} from '../store/actions/techs'
 import CustomHButon from '../components/CustomHButon'
 import Colors from '../constants/Colors'
 
@@ -26,6 +28,8 @@ const [isMobile,setIsMobile] = useState(false)
 const [isBack,setIsBack] = useState(false)
 const [isDesk,setIsDesk] = useState(false)
 
+const dispatch = useDispatch()
+
 const saveFilters = useCallback( () =>{
     const appliedFilters = {
         front:isFront,
@@ -33,8 +37,8 @@ const saveFilters = useCallback( () =>{
         back:isBack,
         desk:isDesk
     }
-    console.log(appliedFilters)
-},[isFront,isMobile,isBack,isDesk]
+    dispatch(setFilters(appliedFilters))
+},[isFront,isMobile,isBack,isDesk,dispatch]
 ) 
 
 
@@ -72,7 +76,7 @@ useEffect (()=>{
 FiltersScreen.navigationOptions = navData => {
     return {  
         headerTitle : 'Filtered Techs',
-        headerLeft: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
             <Item
                 iconName='menu'
                 onPress={()=>{
