@@ -26,6 +26,11 @@ const navOptions = {
 }
 
 const TechNavigator = createStackNavigator()
+const FavoritesNavigator = createStackNavigator()
+const FilterNavigator = createStackNavigator()
+const AndroidTabNavigator = createMaterialBottomTabNavigator()
+const IosTabNavigator = createBottomTabNavigator()
+const MainNavigator = createDrawerNavigator()
 
 /*const TechsNavigator = createStackNavigator({
     Categories:{
