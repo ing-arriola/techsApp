@@ -17,8 +17,18 @@ const TechDetailScreen = (props) => {
     )
 
     useEffect(()=>{
-        props.navigation.setParams({toogleFavs:toggleFavsHandler})
-    },[toggleFavsHandler])
+        props.navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHButon} >
+                <Item
+                    title='Favorite'
+                    iconName= {isFav ? 'star' : 'star-outline'}
+                    onPress={toggleFavsHandler}
+                />
+            </HeaderButtons>
+            )
+        })
+    },[toggleFavsHandler,isFav])
 
 
     useEffect(()=>{
