@@ -15,8 +15,8 @@ const CategoriesTechsScreen = (props) => {
     )
 }
 
-CategoriesTechsScreen.navigationOptions = navigationData => { 
-    const itemPassed=navigationData.navigation.getParam('item')
+export const categoriesOptions = navigationData => { 
+    const itemPassed=navigationData.route.params.item
     return {
         headerTitle : itemPassed.title,
     }
