@@ -53,6 +53,22 @@ const TechStackNavigator = () => {
         </TechNavigator.Navigator>
     )
 }
+const FavoritesStackNavigator = () => {
+    return(
+        <FavoritesNavigator.Navigator screenOptions={navOptions}>
+            <FavoritesNavigator.Screen 
+                name='FavoritesScreen'
+                component={FavoritesScreen}
+                options={favoritesOptions}
+            />
+             <FavoritesNavigator.Screen 
+                name='TechDetail'
+                component={TechDetailScreen}
+                options={techDetailOptions}
+            />
+        </FavoritesNavigator.Navigator>
+    )
+}
     </NavigationContainer>
 } 
 
