@@ -32,36 +32,23 @@ const AndroidTabNavigator = createMaterialBottomTabNavigator()
 const IosTabNavigator = createBottomTabNavigator()
 const MainNavigator = createDrawerNavigator()
 
-/*const TechsNavigator = createStackNavigator({
-    Categories:{
-        screen:CategoriesScreen
-    }, 
-    CategoriesTechs:CategoriesTechsScreen, 
-    TechDetail:TechDetailScreen 
-    },
-    {
-        defaultNavigationOptions: navOptions
-    }
-)
-
-*/
-
-
-
-const TechsNavigator = (props) => {
-    return <NavigationContainer>
-        <TechNavigator.Navigator>
+const TechStackNavigator = () => {
+    return(
+        <TechNavigator.Navigator screenOptions={navOptions} >
             <TechNavigator.Screen 
                 name='screen'
                 component={CategoriesScreen}
+                options={screenOptions}
             />
             <TechNavigator.Screen 
                 name='CategoriesTechs'
                 component={CategoriesTechsScreen}
+                options={categoriesOptions}
             />
             <TechNavigator.Screen 
                 name='TechDetail'
                 component={TechDetailScreen}
+                options={techDetailOptions}
             />
         </TechNavigator.Navigator>
     </NavigationContainer>
