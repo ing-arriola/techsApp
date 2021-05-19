@@ -55,16 +55,7 @@ const TechDetailScreen = (props) => {
 export const techDetailOptions = navigationData => { 
     const itemPassed=navigationData.route.params.item  
     return { 
-        headerTitle : itemPassed.name,
-        headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={CustomHButon} >
-            <Item
-                title='Favorite'
-                iconName= {isFav ? 'star' : 'star-outline'}
-                onPress={toggleFavorites}
-            />
-        </HeaderButtons>
-        )
+        headerTitle : itemPassed.name
     }
 }
 
