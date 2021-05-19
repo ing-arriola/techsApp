@@ -6,7 +6,8 @@ import {useDispatch,useSelector } from 'react-redux'
 import {toogleFavorites} from '../store/actions/techs'
 
 const TechDetailScreen = (props) => {
-    const selectedTech = props.navigation.getParam('item')
+    const selectedTech = props.route.params.item
+    const isFav = props.route.params.isFavorite
     const isTechFavorite =  useSelector(state => state.techs.favoritesTechs.some(tech => tech.id === selectedTech.id))
     const dispatch = useDispatch()
 
