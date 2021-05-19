@@ -202,6 +202,9 @@ const MainDrawerNavigator = () => {
 
 
 
+const TechsNavigator = (props) => {
+    return <NavigationContainer>
+        <MainDrawerNavigator />
     </NavigationContainer>
 } 
 
