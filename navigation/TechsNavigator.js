@@ -175,6 +175,33 @@ const IosStackNavigator = () => {
 
 
 
+const MainDrawerNavigator = () => {
+    return(
+        <MainNavigator.Navigator
+            drawerContentOptions={{
+                activeTintColor:Colors.accentColor,
+                labelStyle:{
+                fontFamily:'open-sans-bold'
+            }
+            }}
+        >
+            <MainNavigator.Screen 
+                name='TechsFavs'
+                component={Platform.OS === "android" ? MaterialStackNavigator : IosStackNavigator  }
+                options={{
+                    drawerLabel:'Home'
+                }}
+            />
+            <MainNavigator.Screen 
+                name='Filter'
+                component={FiltersStackNavigator}
+            />
+        </MainNavigator.Navigator>
+    )
+}
+
+
+
     </NavigationContainer>
 } 
 
