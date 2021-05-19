@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import TechList from '../components/TechList'
 
 const CategoriesTechsScreen = (props) => {
-    const itemPassed=props.navigation.getParam('item')
+    const itemPassed=props.route.params.item
     const availableTechs = useSelector(state => state.techs.filteredTechs)
     const techsToDisplay =  availableTechs.filter(tech => tech.category.indexOf(itemPassed.id)>=0)
 
