@@ -69,6 +69,19 @@ const FavoritesStackNavigator = () => {
         </FavoritesNavigator.Navigator>
     )
 }
+
+const FiltersStackNavigator = () => {
+    return (
+        <FilterNavigator.Navigator screenOptions={navOptions} >
+            <FilterNavigator.Screen 
+                name='Filter'
+                component={FiltersScreen}
+                options={filtersOptions}
+            />
+        </FilterNavigator.Navigator>
+    )
+}
+
     </NavigationContainer>
 } 
 
