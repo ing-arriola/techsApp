@@ -84,7 +84,7 @@ export const filtersOptions = navData => {
                 }}
             />
         </HeaderButtons>,
-        headerRight: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
         <Item
             name='Save'
             iconName='ios-save'
