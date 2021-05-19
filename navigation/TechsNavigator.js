@@ -51,6 +51,8 @@ const TechStackNavigator = () => {
                 options={techDetailOptions}
             />
         </TechNavigator.Navigator>
+    )
+}
     </NavigationContainer>
 } 
 
