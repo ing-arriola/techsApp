@@ -6,15 +6,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createDrawerNavigator  } from '@react-navigation/drawer'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import Colors from '../constants/Colors'
-import FavoritesScreen from '../Screens/FavoritesScreen' 
+import FavoritesScreen,{ favoritesOptions } from '../Screens/FavoritesScreen' 
 import { Ionicons } from '@expo/vector-icons'
 
-import CategoriesScreen from '../Screens/CategoriesScreen'
-import CategoriesTechsScreen from '../Screens/CategoriesTechsScreen'
-import TechDetailScreen from '../Screens/TechDetailScreen'
-import FiltersScreen from '../Screens/FiltersScreen'
-
-
+import CategoriesScreen, { screenOptions } from '../Screens/CategoriesScreen'
+import CategoriesTechsScreen, { categoriesOptions } from '../Screens/CategoriesTechsScreen'
+import TechDetailScreen,{ techDetailOptions } from '../Screens/TechDetailScreen'
+import FiltersScreen,{ filtersOptions } from '../Screens/FiltersScreen'
 
 const navOptions = {
     headerStyle:{
