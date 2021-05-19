@@ -89,7 +89,7 @@ export const filtersOptions = navData => {
             name='Save'
             iconName='ios-save'
             onPress={
-            navData.navigation.getParam('save')
+                navData.route.params.save
             }
         />
     </HeaderButtons>
