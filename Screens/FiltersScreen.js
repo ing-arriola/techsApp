@@ -73,7 +73,7 @@ useEffect (()=>{
     )
 }
 
-FiltersScreen.navigationOptions = navData => {
+export const filtersOptions = navData => {
     return {  
         headerTitle : 'Filtered Techs',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
