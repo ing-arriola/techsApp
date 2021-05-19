@@ -52,10 +52,8 @@ const TechDetailScreen = (props) => {
     )
 }
 
-TechDetailScreen.navigationOptions = navigationData => { 
-    const itemPassed=navigationData.navigation.getParam('item')
-    const toggleFavorites = navigationData.navigation.getParam('toogleFavs')
-    const isFav = navigationData.navigation.getParam('isFavorite')
+export const techDetailOptions = navigationData => { 
+    const itemPassed=navigationData.route.params.item  
     return { 
         headerTitle : itemPassed.name,
         headerRight: () => (
