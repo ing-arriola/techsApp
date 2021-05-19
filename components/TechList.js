@@ -12,13 +12,12 @@ const TechList = ({techsToDisplay,navigation}) => {
             name={itemData.item.name}
             image={itemData.item.image}
             onSelectTech={()=>{
-                navigation.navigate({
-                    routeName:'TechDetail',
-                    params:{
+                navigation.navigate('TechDetail',
+                    {
                         item:itemData.item,
                         isFavorite:isTechFav
                     }
-                })
+                )
             }}
             />
         )

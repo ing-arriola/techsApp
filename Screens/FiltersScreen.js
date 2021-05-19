@@ -73,7 +73,7 @@ useEffect (()=>{
     )
 }
 
-FiltersScreen.navigationOptions = navData => {
+export const filtersOptions = navData => {
     return {  
         headerTitle : 'Filtered Techs',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
@@ -84,12 +84,12 @@ FiltersScreen.navigationOptions = navData => {
                 }}
             />
         </HeaderButtons>,
-        headerRight: <HeaderButtons HeaderButtonComponent={CustomHButon} >
+        headerRight: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
         <Item
             name='Save'
             iconName='ios-save'
             onPress={
-            navData.navigation.getParam('save')
+                navData.route.params.save
             }
         />
     </HeaderButtons>

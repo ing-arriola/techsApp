@@ -6,7 +6,8 @@ import {useDispatch,useSelector } from 'react-redux'
 import {toogleFavorites} from '../store/actions/techs'
 
 const TechDetailScreen = (props) => {
-    const selectedTech = props.navigation.getParam('item')
+    const selectedTech = props.route.params.item
+    const isFav = props.route.params.isFavorite
     const isTechFavorite =  useSelector(state => state.techs.favoritesTechs.some(tech => tech.id === selectedTech.id))
     const dispatch = useDispatch()
 
@@ -16,8 +17,18 @@ const TechDetailScreen = (props) => {
     )
 
     useEffect(()=>{
-        props.navigation.setParams({toogleFavs:toggleFavsHandler})
-    },[toggleFavsHandler])
+        props.navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={CustomHButon} >
+                <Item
+                    title='Favorite'
+                    iconName= {isFav ? 'star' : 'star-outline'}
+                    onPress={toggleFavsHandler}
+                />
+            </HeaderButtons>
+            )
+        })
+    },[toggleFavsHandler,isFav])
 
 
     useEffect(()=>{
@@ -41,21 +52,10 @@ const TechDetailScreen = (props) => {
     )
 }
 
-TechDetailScreen.navigationOptions = navigationData => { 
-    const itemPassed=navigationData.navigation.getParam('item')
-    const toggleFavorites = navigationData.navigation.getParam('toogleFavs')
-    const isFav = navigationData.navigation.getParam('isFavorite')
+export const techDetailOptions = navigationData => { 
+    const itemPassed=navigationData.route.params.item  
     return { 
-        headerTitle : itemPassed.name,
-        headerRight: () => (
-            <HeaderButtons HeaderButtonComponent={CustomHButon} >
-            <Item
-                title='Favorite'
-                iconName= {isFav ? 'star' : 'star-outline'}
-                onPress={toggleFavorites}
-            />
-        </HeaderButtons>
-        )
+        headerTitle : itemPassed.name
     }
 }
 

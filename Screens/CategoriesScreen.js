@@ -12,12 +12,11 @@ const CategoriesScreen = (props) => {
             <CategoryGrid 
                 itemData={itemData}
                 onSelect={()=>{
-                    props.navigation.navigate({
-                        routeName:'CategoriesTechs',
-                        params:{
+                    props.navigation.navigate('CategoriesTechs',
+                        {
                             item:itemData.item
                         }
-                    })
+                    )
                 }}
             />
         )
@@ -34,7 +33,7 @@ const CategoriesScreen = (props) => {
     )
 }
 
-CategoriesScreen.navigationOptions = navData => {
+export const screenOptions = navData => {
     return {  
         headerTitle : 'Techs Categories',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >

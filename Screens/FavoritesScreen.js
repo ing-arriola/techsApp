@@ -32,7 +32,7 @@ const FavoritesScreen = (props) => {
     )
 }
 
-FavoritesScreen.navigationOptions = navData => {
+export const favoritesOptions= navData => {
     return {  
         headerTitle : 'Favorites Techs',
         headerLeft: () => <HeaderButtons HeaderButtonComponent={CustomHButon} >
