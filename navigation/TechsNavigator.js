@@ -126,6 +126,55 @@ const MaterialStackNavigator = () => {
 }
 
 
+const IosStackNavigator = () => {
+    return(
+        <IosTabNavigator.Navigator
+        tabBarOptions= {{
+            labelStyle:{
+                fontFamily:'open-sans' // just for ios
+            },
+            activeTintColor:Colors.accentColor
+            }}
+        >
+            <IosTabNavigator.Screen 
+                name='Techs'
+                component={TechStackNavigator}
+                options={{
+                    tabBarLabel:'Techs',//This is up to you becasue by default values are the key of this objetc, I mean Techs here
+                    tabBarIcon:(tabInfo) => {
+                        return <Ionicons 
+                                name='code'
+                                size={25}
+                                color={tabInfo.tintColor}
+                            />
+                        },
+                    tabBarColor:Colors.primaryColor,
+                    tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Techs</Text> :'Techs'
+                }}
+            />
+            <IosTabNavigator.Screen
+                name='Favorites'
+                component={FavoritesStackNavigator}
+                options={{
+                        tabBarLabel:'Favorites',
+                        tabBarIcon:(tabInfo) => {
+                            return <Ionicons 
+                                        name='star' 
+                                        size={25}
+                                        color={tabInfo.tintColor}
+                                    />
+                        },
+                        tabBarColor:Colors.accentColor,
+                        tabBarLabel:Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Favorites</Text> :'Techs'
+                        }
+                    }
+            />
+        </IosTabNavigator.Navigator>
+    )
+}
+
+
+
     </NavigationContainer>
 } 
 
