@@ -82,6 +82,50 @@ const FiltersStackNavigator = () => {
     )
 }
 
+const MaterialStackNavigator = () => {
+    return(
+        <AndroidTabNavigator.Navigator
+            activeColor='#fff'
+            shifting={true}
+        >    
+            <AndroidTabNavigator.Screen 
+                name='Techs'
+                component={TechStackNavigator}
+                options={{
+                    tabBarLabel:'Techs',//This is up to you becasue by default values are the key of this objetc, I mean Techs here
+                    tabBarIcon:(tabInfo) => {
+                        return <Ionicons 
+                                name='code'
+                                size={25}
+                                color={tabInfo.color}
+                            />
+                        },
+                    tabBarColor:Colors.primaryColor,
+                    tabBarLabel: Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Techs</Text> :'Techs'
+                }}
+            />
+            <AndroidTabNavigator.Screen
+                name='Favorites'
+                component={FavoritesStackNavigator}
+                options={{
+                        tabBarLabel:'Favorites',
+                        tabBarIcon:(tabInfo) => {
+                            return <Ionicons 
+                                        name='star' 
+                                        size={25}
+                                        color={tabInfo.color}
+                                    />
+                        },
+                        tabBarColor:Colors.accentColor,
+                        tabBarLabel:Platform.OS === 'android' ? <Text style={{fontFamily:'open-sans'}} >Favorites</Text> :'Techs'
+                        }
+                    }
+            />
+        </AndroidTabNavigator.Navigator>
+    )
+}
+
+
     </NavigationContainer>
 } 
 
